@@ -1,0 +1,29 @@
+.nav-item {
+  text-decoration: none;
+  margin-top: 0px;
+  padding: 7px;
+  margin-left: 6px;
+  border-radius: 6%;
+  margin-right: 8px;
+  background-color: #d9dfe1;
+  color: black;
+  border: 3px solid #6d6262;
+}
+.navbar {
+  background-color: #8791917a;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 9vh;
+  box-shadow: 0 5px 6px -1px #d9c9c9;
+  position: fixed;
+}
+.button {
+  padding: 6px;
+  margin: 10px;
+  box-shadow: 0 0 10px #ffeb3b;
+  border-radius: 3%;
+  border: 1px;
+}

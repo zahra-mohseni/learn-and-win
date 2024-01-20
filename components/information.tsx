@@ -4,12 +4,11 @@ import { useRouter } from "next/router";
 const Information: React.FC<{
   itemData: { image: string; title: string; text: string };
 }> = (props) => {
-  console.log(props);
   const router = useRouter();
   const clickHandler = (e: any) => {
     e.preventDefault();
 
-    router.push(`/data/vb`);
+    router.push(`/data/${props.itemData.title}`);
   };
   return (
     <div className="row ">

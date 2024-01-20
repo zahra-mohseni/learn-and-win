@@ -8,7 +8,7 @@ const HomePage = (props: {
   return (
     <>
       {dataArray.map((item) => (
-        <Information itemData={item} />
+        <Information itemData={item} key={item.image} />
       ))}
     </>
   );
@@ -25,6 +25,7 @@ export async function getStaticProps(context: any) {
         image: item.image,
         title: item.title,
         text: item.text,
+        key: item._id.toString(),
       })),
     },
     revalidate: 1,

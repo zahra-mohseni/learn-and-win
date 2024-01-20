@@ -17,7 +17,11 @@ const InformationEntering = () => {
       title?.trim().length !== 0 &&
       text?.trim().length !== 0
     ) {
-      const response = await axios.post("api/data-api", { image, title, text });
+      const response = await axios.post("api/data-api", {
+        image,
+        title,
+        text,
+      });
       if (response.status === 200) {
         imgLink.current!.value = "";
         dataTitle.current!.value = "";

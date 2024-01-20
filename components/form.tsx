@@ -19,7 +19,7 @@ const FormItem: React.FC<{
   const [mode, setMode] = useState<string>("sign-up");
   const searchParams = useSearchParams();
   const params = searchParams?.get("mode");
-  console.log(params);
+
   const name = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);

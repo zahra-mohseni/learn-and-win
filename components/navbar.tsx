@@ -12,7 +12,6 @@ const Navbar = () => {
     if (tok) {
       console.log("token find");
       ctx.logIn();
-      console.log("it happend");
     }
   }
 

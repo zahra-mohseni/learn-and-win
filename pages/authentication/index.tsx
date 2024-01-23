@@ -70,6 +70,9 @@ const Authentication = () => {
         const expirationTime = new Date();
         expirationTime.setHours(expirationTime.getHours() + 1);
         localStorage.setItem("expiration", expirationTime.getTime().toString());
+        if (userData.id === "659473f4a608560a62f94660") {
+          ctx.managing();
+        }
       } else if (response.status === 206) {
         let message = response.data.message;
         setServerError(message);

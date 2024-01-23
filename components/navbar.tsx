@@ -20,11 +20,13 @@ const Navbar = () => {
       let token = localStorage.getItem("token");
 
       if (token) {
+        setLogState(false);
         console.log("token exist");
         localStorage.removeItem("token");
         localStorage.removeItem("expiration");
         localStorage.removeItem("score");
         ctx.logOut();
+        ctx.closeManager();
         console.log("token removed");
       }
     }
@@ -36,12 +38,17 @@ const Navbar = () => {
         <Link className={styles["nav-item"]} href="/">
           HomePage
         </Link>
-        <Link className={styles["nav-item"]} href="/quiz">
+        <Link className={styles["nav-item"]} href="/quiz-lists">
           Quiz
         </Link>
         <Link className={styles["nav-item"]} href="/authentication">
           sign in/up
         </Link>
+        {ctx.manager && (
+          <Link className={styles["nav-item"]} href="/manager">
+            managing(homepage)
+          </Link>
+        )}
       </div>{" "}
       <button className={styles.button} onClick={logHandler}>
         {ctx.isLogedIn === false ? (

@@ -1,0 +1,22 @@
+.back {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: #9d6d8775;
+}
+.card {
+  background-color: #c58b9e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2px;
+  border: black;
+  padding: 45px;
+  box-shadow: 0 0 17px white;
+  margin-top: 200px;
+}
+.button {
+  border-radius: 7%;
+  padding: 9px;
+  margin: 6px;
+}

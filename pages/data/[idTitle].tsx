@@ -65,7 +65,6 @@ export async function getStaticPaths() {
   const paramsIds = collection.map((item) => ({
     params: { idTitle: item.title },
   }));
-
   return { fallback: false, paths: paramsIds };
 }
 export default InformationPage;

@@ -32,6 +32,7 @@ const SignInForm: React.FC<{
 
       localStorage.removeItem("score");
       ctx.logOut();
+      ctx.closeManager();
       setIsSubmitting(false);
     }
   };

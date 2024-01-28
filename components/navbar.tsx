@@ -9,9 +9,13 @@ const Navbar = () => {
 
   if (typeof window !== "undefined" && window.localStorage) {
     let tok = localStorage.getItem("token");
+    let expireTime = localStorage.getItem("expiration");
     if (tok) {
       console.log("token find");
       ctx.logIn();
+    }
+    if (tok === "659473f4a608560a62f94660") {
+      ctx.managing();
     }
   }
 
@@ -47,6 +51,11 @@ const Navbar = () => {
         {ctx.manager && (
           <Link className={styles["nav-item"]} href="/manager">
             managing(homepage)
+          </Link>
+        )}
+        {ctx.manager && (
+          <Link className={styles["nav-item"]} href="/quiz-manager">
+            quiz manager
           </Link>
         )}
       </div>{" "}

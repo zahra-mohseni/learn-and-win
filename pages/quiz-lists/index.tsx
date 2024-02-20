@@ -1,10 +1,15 @@
 import styles from "../../styles/quiz-list.module.css";
 import Modal from "@/components/modal";
+import { MongoClient } from "mongodb";
 import { useState } from "react";
-const QuizList = () => {
+const QuizList: React.FC<{ data: string[] }> = (props) => {
+  const quizTitles = props.data;
+
   const [isClicked, setIsClicked] = useState(false);
-  const clickHandler = (e: any) => {
+  const [clickedTitle, setClickedTitle] = useState("");
+  const clickHandler = (e: any, item: string) => {
     e.preventDefault();
+    setClickedTitle(item);
     setIsClicked(true);
   };
   const modalHandler = (data: { data: boolean }) => {
@@ -12,29 +17,37 @@ const QuizList = () => {
       setIsClicked(false);
     }
   };
+
   return (
     <>
       {" "}
-      {isClicked && <Modal onModal={modalHandler} />}
+      {isClicked && clickedTitle !== "" && (
+        <Modal onModal={modalHandler} title={clickedTitle} />
+      )}
       <div className={`${"row"} ${styles.row}`}>
-        <div
-          className={`${"col-10 col-lg-4 col-sm-6 col-md-5"} ${styles.cols}`}
-          onClick={clickHandler}
-        >
-          type scrip
-        </div>
-        <div
-          className={`${"col-10 col-lg-4 col-sm-6 col-md-5"} ${styles.cols}`}
-        >
-          next quiz
-        </div>
-        <div
-          className={`${"col-10 col-lg-4 col-sm-6 col-md-5"} ${styles.cols}`}
-        >
-          javascript quiz
-        </div>
+        {quizTitles.map((item) => (
+          <div
+            key={item}
+            className={`${"col-10 col-lg-4 col-sm-6 col-md-5"} ${styles.cols}`}
+            onClick={(e) => {
+              clickHandler(e, item);
+            }}
+          >
+            {item}
+          </div>
+        ))}
       </div>
     </>
   );
 };
+export async function getStaticProps() {
+  const client = await MongoClient.connect(
+    "mongodb+srv://mohseniz25:PLsUGaAZOK6qkYsM@cluster0.sbiuujd.mongodb.net/test-questions?retryWrites=true&w=majority"
+  );
+  const db = client.db();
+  const collectionNames = await db.collections();
+
+  const names = collectionNames.map((item) => item.collectionName);
+  return { props: { data: names } };
+}
 export default QuizList;

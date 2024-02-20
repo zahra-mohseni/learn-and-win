@@ -1,0 +1,17 @@
+.back {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: aliceblue;
+}
+.table {
+  display: flex;
+  flex-direction: row;
+  background-color: #a5a4a4;
+  margin: 0px;
+  border-bottom: solid 1px;
+}
+.texts {
+  text-align: center;
+}

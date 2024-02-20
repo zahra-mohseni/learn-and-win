@@ -2,7 +2,7 @@ import { MongoClient, ObjectId } from "mongodb";
 async function haandler(req, res) {
   if (req.method === "POST") {
     const newData = req.body;
-    console.log(newData);
+
     if (
       newData.name.trim() === "" ||
       !newData.email.includes("@") ||
@@ -35,7 +35,7 @@ async function haandler(req, res) {
   }
   if (req.method === "PUT") {
     const data = req.body;
-    console.log(data);
+
     if (
       data.email.includes("@") &&
       data.email.trim().length > 0 &&
@@ -64,15 +64,15 @@ async function haandler(req, res) {
       } else {
         res.status(206).json({ message: "username or email is wrong" });
       }
-      console.log(collectionUser);
+
       client.close();
     }
   }
   if (req.method === "PATCH") {
     let data = req.body;
-    const turnedToken = new ObjectId(data.token);
-    console.log(data);
+
     if (data.token && data.score) {
+      const turnedToken = new ObjectId(data.token);
       const client = await MongoClient.connect(
         "mongodb+srv://mohseniz25:PLsUGaAZOK6qkYsM@cluster0.sbiuujd.mongodb.net/quiz?retryWrites=true&w=majority"
       );
@@ -84,7 +84,11 @@ async function haandler(req, res) {
           { $set: { score: data.score } },
           { returnNewDocument: true }
         );
-      console.log(collection);
+      client.close();
+    } else if (!data.token) {
+      res
+        .status(207)
+        .json({ message: "please enter a username to save your score" });
     }
   }
 }

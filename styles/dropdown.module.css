@@ -4,6 +4,7 @@
   margin-top: 2px;
   position: fixed;
   margin-left: 2px;
+  background-color: #ededed;
 }
 @media (min-width: 521px) {
   .button {

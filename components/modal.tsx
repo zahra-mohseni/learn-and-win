@@ -6,9 +6,9 @@ const ModalPage = (props: any) => {
     e.preventDefault();
     router.push(`/quiz/${props.title}`);
   };
-  const cancelHandler = (e: any) => {
+  const cancelHandler = (e: any, title: string) => {
     e.preventDefault();
-    router.push("/");
+    router.push(`/data/${title}`);
   };
   const discardHandler = (e: any) => {
     e.preventDefault();
@@ -22,7 +22,12 @@ const ModalPage = (props: any) => {
         <button className={`${styles.button}`} onClick={submitHandler}>
           YES ,I want to start quiz
         </button>
-        <button className={`${styles.button}`} onClick={cancelHandler}>
+        <button
+          className={`${styles.button}`}
+          onClick={(e) => {
+            cancelHandler(e, props.title);
+          }}
+        >
           NO ,I want to study first
         </button>
       </div>

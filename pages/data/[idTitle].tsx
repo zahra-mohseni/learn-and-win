@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { MongoClient } from "mongodb";
+import { useRouter } from "next/router";
 
 const Div = styled.div`
-background-color: #e99999de;
+background-color: #e3bebe;
 margin-top: 127px;
 display : flex;
 flex-direction : column ; 
@@ -17,8 +18,15 @@ const StyledBtn = styled.button`
   box-shadow: black 0px 0px 6px;
   border-radius: 11%;
   margin: 9px;
+  background-color :#e5a0a0
 `;
 const InformationPage = (props: any) => {
+  const router = useRouter();
+  const params = router.query.idTitle;
+  const clickHandler: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    router.push(`/quiz/${params}`);
+  };
   return (
     <div className="row d-flex flex-column align-items-center ">
       {" "}
@@ -30,7 +38,7 @@ const InformationPage = (props: any) => {
         />{" "}
         <h3>{props.data.title}</h3>
         <p> {props.data.text}</p>
-        <StyledBtn>start quiz</StyledBtn>
+        <StyledBtn onClick={clickHandler}>start quiz</StyledBtn>
       </Div>
     </div>
   );

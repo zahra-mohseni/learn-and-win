@@ -1,16 +1,16 @@
 .back {
-  background-color: #f5c2be;
+  background-color: #e3bebe;
   margin-top: 98px;
   border-radius: 2%;
   border: solid 2px;
-  box-shadow: 2px 3px 7px white;
+  box-shadow: 0 0 7px white;
   margin-bottom: 45px;
 }
 .button {
   margin: 15px;
   padding: 4px;
   border-radius: 9%;
-  background-color: lightcoral;
+  background-color: #e5a0a0;
 }
 .imgs {
   margin: 11px;

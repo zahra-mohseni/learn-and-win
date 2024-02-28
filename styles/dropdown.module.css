@@ -1,0 +1,29 @@
+.button {
+  width: 111px;
+  height: 38px;
+  margin-top: 2px;
+  position: fixed;
+  margin-left: 2px;
+}
+@media (min-width: 521px) {
+  .button {
+    display: none;
+  }
+  .menu {
+    display: none;
+  }
+}
+.menu {
+  background-color: #c5c5c5e8;
+  position: fixed;
+  margin-top: 158px;
+  margin-left: 2px;
+  width: 111px;
+}
+.nav-self {
+  cursor: pointer;
+  border-bottom: solid 1px #838282;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  text-align: center;
+}

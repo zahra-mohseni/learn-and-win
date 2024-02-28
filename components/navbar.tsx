@@ -3,6 +3,8 @@ import Link from "next/link";
 import styles from "../styles/navbar.module.css";
 import { useContext, useState } from "react";
 import LogContext from "@/context/log-context";
+import Dropdown from "./dropdown";
+import HomePage from "@/pages";
 const Navbar = () => {
   const ctx = useContext(LogContext);
   const [logState, setLogState] = useState(false);
@@ -35,19 +37,20 @@ const Navbar = () => {
       }
     }
   };
-
+  const navData = [
+    { name: "HomePage", link: "/" },
+    { name: "Quiz", link: "/quiz-lists" },
+    { name: "sign in/up", link: "/authentication" },
+  ];
   return (
     <div className={styles.navbar}>
-      <div>
-        <Link className={styles["nav-item"]} href="/">
-          HomePage
-        </Link>
-        <Link className={styles["nav-item"]} href="/quiz-lists">
-          Quiz
-        </Link>
-        <Link className={styles["nav-item"]} href="/authentication">
-          sign in/up
-        </Link>
+      <div className={styles.nav}>
+        {navData.map((item) => (
+          <Link className={styles["nav-item"]} href={item.link}>
+            {item.name}
+          </Link>
+        ))}
+
         {ctx.manager && (
           <Link className={styles["nav-item"]} href="/manager">
             managing(homepage)
@@ -59,6 +62,7 @@ const Navbar = () => {
           </Link>
         )}
       </div>{" "}
+      <Dropdown data = {navData} />
       <button className={styles.button} onClick={logHandler}>
         {ctx.isLogedIn === false ? (
           <p style={{ margin: 0 }}>quest user</p>

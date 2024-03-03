@@ -24,6 +24,6 @@ export async function getStaticProps() {
   }));
   client.close();
 
-  return { props: { data: scoreData }, revalidate: 1 };
+  return { props: { data: scoreData }, revalidate: 0.1 };
 }
 export default ScoreList;

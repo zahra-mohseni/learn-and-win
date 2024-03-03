@@ -46,7 +46,7 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <div className={styles.nav}>
         {navData.map((item) => (
-          <Link className={styles["nav-item"]} href={item.link}>
+          <Link className={styles["nav-item"]} href={item.link} key={item.link}>
             {item.name}
           </Link>
         ))}
@@ -62,7 +62,7 @@ const Navbar = () => {
           </Link>
         )}
       </div>{" "}
-      <Dropdown data = {navData} />
+      <Dropdown data={navData} />
       <button className={styles.button} onClick={logHandler}>
         {ctx.isLogedIn === false ? (
           <p style={{ margin: 0 }}>quest user</p>

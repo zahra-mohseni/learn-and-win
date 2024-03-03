@@ -4,9 +4,10 @@
   margin-top: 2px;
   position: fixed;
   margin-left: 2px;
-  background-color: #ededed;
+  background-color: #cbcbcb;
+  border: solid 2px #353333;
 }
-@media (min-width: 521px) {
+@media (min-width: 701px) {
   .button {
     display: none;
   }

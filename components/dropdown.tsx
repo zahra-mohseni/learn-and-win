@@ -25,6 +25,7 @@ const Dropdown: React.FC<{ data: { name: string; link: string }[] }> = (
         <div className={styles.menu}>
           {props.data.map((item) => (
             <div
+              key={item.name}
               className={styles["nav-self"]}
               onClick={(e) => {
                 navClickHandler(e, item.link);

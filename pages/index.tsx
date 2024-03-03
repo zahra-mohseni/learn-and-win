@@ -1,5 +1,5 @@
 import Information from "@/components/information";
-import axios from "axios";
+import Head from "next/head";
 import { MongoClient } from "mongodb";
 const HomePage = (props: {
   data: { image: string; title: string; text: string }[];
@@ -7,6 +7,11 @@ const HomePage = (props: {
   const dataArray = props.data;
   return (
     <>
+      {" "}
+      <Head>
+        <title>HomePage</title>
+        <meta name="description" content="Home page" />
+      </Head>
       {dataArray.map((item) => (
         <Information itemData={item} key={item.image} />
       ))}

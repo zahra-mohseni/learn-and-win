@@ -2,17 +2,18 @@ import { useRouter } from "next/router";
 import FormItem from "../../components/form";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import LogContext from "@/context/log-context";
 import SignInForm from "@/components/sign-in";
-import { Chela_One } from "next/font/google";
+
 const Authentication = () => {
   const ctx = useContext(LogContext);
-  const [mode, setMode] = useState<string>("sign-up");
+
   const searchParams = useSearchParams();
   const [serverError, setServerError] = useState("");
-
+  const [signUpError, setSignUpError] = useState("");
   const params = searchParams?.get("mode");
   console.log(params);
   const [user, setUser] = useState<{
@@ -47,6 +48,8 @@ const Authentication = () => {
       } else if (response.status === 202) {
         let error = response.data.message;
         alert(error);
+      } else if (response.status === 203) {
+        setSignUpError(response.data.message);
       }
     });
   };
@@ -82,8 +85,12 @@ const Authentication = () => {
   };
   return (
     <>
+      <Head>
+        <title>authentication</title>
+        <meta name="description" content="authentication page" />
+      </Head>
       {signMode === "sign-up" ? (
-        <FormItem onDataGetter={dataGether} />
+        <FormItem onDataGetter={dataGether} signError = {signUpError} />
       ) : (
         <SignInForm
           onSignDataGetter={SignDataHandler}

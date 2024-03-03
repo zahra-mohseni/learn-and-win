@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MongoClient } from "mongodb";
 import { useRouter } from "next/router";
-
+import Head from "next/head";
 const Div = styled.div`
 background-color: #e3bebe;
 margin-top: 127px;
@@ -18,7 +18,7 @@ const StyledBtn = styled.button`
   box-shadow: black 0px 0px 6px;
   border-radius: 11%;
   margin: 9px;
-  background-color :#e5a0a0
+  background-color: #e5a0a0;
 `;
 const InformationPage = (props: any) => {
   const router = useRouter();
@@ -28,19 +28,25 @@ const InformationPage = (props: any) => {
     router.push(`/quiz/${params}`);
   };
   return (
-    <div className="row d-flex flex-column align-items-center ">
-      {" "}
-      <Div className="col-lg-8 col-md-10 col-sm-10 col-11">
-        <img
-          style={{ margin: 20, borderRadius: 3 }}
-          className="col-8 col-md-7 col-lg-6"
-          src={props.data.image}
-        />{" "}
-        <h3>{props.data.title}</h3>
-        <p> {props.data.text}</p>
-        <StyledBtn onClick={clickHandler}>start quiz</StyledBtn>
-      </Div>
-    </div>
+    <>
+      <Head>
+        <title>{props.data.title}</title>
+        <meta name="description" content="learn now" />
+      </Head>
+      <div className="row d-flex flex-column align-items-center ">
+        {" "}
+        <Div className="col-lg-8 col-md-10 col-sm-10 col-11">
+          <img
+            style={{ margin: 20, borderRadius: 3 }}
+            className="col-8 col-md-7 col-lg-6"
+            src={props.data.image}
+          />{" "}
+          <h3>{props.data.title}</h3>
+          <p> {props.data.text}</p>
+          <StyledBtn onClick={clickHandler}>start quiz</StyledBtn>
+        </Div>
+      </div>
+    </>
   );
 };
 export async function getStaticProps(context: any) {

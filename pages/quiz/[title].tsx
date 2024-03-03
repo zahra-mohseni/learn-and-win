@@ -1,6 +1,7 @@
 import QuestionCard from "@/components/question-card";
 import LogContext from "@/context/log-context";
 import { useContext } from "react";
+import Head from "next/head";
 import { MongoClient } from "mongodb";
 const Quiz: React.FC = (props: any) => {
   console.log(props.questions);
@@ -21,6 +22,11 @@ const Quiz: React.FC = (props: any) => {
   }
   return (
     <>
+      {" "}
+      <Head>
+        <title>{props.questions[0].title} quiz</title>
+        <meta name="description" content="quiz" />
+      </Head>
       <QuestionCard data={props.questions} />
     </>
   );

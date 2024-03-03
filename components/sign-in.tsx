@@ -12,13 +12,14 @@ const SignInForm: React.FC<{
   const ctx = useContext(LogContext);
   const [submitting, setIsSubmitting] = useState<boolean>(false);
   const [changer, setChanger] = useState<boolean>(false);
-
+  const [showError, setShowError] = useState(false);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setShowError(true);
     setChanger(!changer);
     props.onSignDataGetter({
       email: email.current!.value,
@@ -96,7 +97,7 @@ const SignInForm: React.FC<{
                 placeholder="please enter your password"
               />
             </li>
-            {props.serverError.trim().length > 0 && (
+            {showError && props.serverError.trim().length > 0 && (
               <p className={styles["error-message"]}>{props.serverError}</p>
             )}
 

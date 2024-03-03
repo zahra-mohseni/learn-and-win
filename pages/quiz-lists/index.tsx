@@ -1,6 +1,7 @@
 import styles from "../../styles/quiz-list.module.css";
 import Modal from "@/components/modal";
 import { MongoClient } from "mongodb";
+import Head from "next/head";
 import { useState } from "react";
 const QuizList: React.FC<{ data: string[] }> = (props) => {
   const quizTitles = props.data;
@@ -21,6 +22,10 @@ const QuizList: React.FC<{ data: string[] }> = (props) => {
   return (
     <>
       {" "}
+      <Head>
+        <title>quiz list</title>
+        <meta name="description" content="quiz list" />
+      </Head>{" "}
       {isClicked && clickedTitle !== "" && (
         <Modal onModal={modalHandler} title={clickedTitle} />
       )}

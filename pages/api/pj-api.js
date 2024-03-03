@@ -16,21 +16,30 @@ async function haandler(req, res) {
         "mongodb+srv://mohseniz25:PLsUGaAZOK6qkYsM@cluster0.sbiuujd.mongodb.net/quiz?retryWrites=true&w=majority"
       );
       const db = client.db();
-      const newUser = await db.collection("authentication").insertOne(newData);
+      const emails = await db
+        .collection("authentication")
+        .findOne({ email: newData.email });
+      if (emails) {
+        res.status(203).json({ message: "this email is used before" });
+      } else {
+        const newUser = await db
+          .collection("authentication")
+          .insertOne(newData);
 
-      const signUpedUser = {
-        id: newUser.insertedId.toString(),
-        name: newData.name,
-        email: newData.email,
-        password: newData.password,
-        score: newData.score,
-      };
-      client.close();
-      res.status(200).json({
-        message: "connected",
-        responsedData: signUpedUser,
-        token: signUpedUser.id,
-      });
+        const signUpedUser = {
+          id: newUser.insertedId.toString(),
+          name: newData.name,
+          email: newData.email,
+          password: newData.password,
+          score: newData.score,
+        };
+        client.close();
+        res.status(200).json({
+          message: "connected",
+          responsedData: signUpedUser,
+          token: signUpedUser.id,
+        });
+      }
     }
   }
   if (req.method === "PUT") {
@@ -62,7 +71,7 @@ async function haandler(req, res) {
           data: user,
         });
       } else {
-        res.status(206).json({ message: "username or email is wrong" });
+        res.status(206).json({ message: "email or password is wrong" });
       }
 
       client.close();
@@ -70,7 +79,23 @@ async function haandler(req, res) {
   }
   if (req.method === "PATCH") {
     let data = req.body;
-
+    console.log(data);
+    if (data.email) {
+      const client = await MongoClient.connect(
+        "mongodb+srv://mohseniz25:PLsUGaAZOK6qkYsM@cluster0.sbiuujd.mongodb.net/quiz?retryWrites=true&w=majority"
+      );
+      const db = client.db();
+      const collection = await db
+        .collection("authentication")
+        .findOne({ email: data.email });
+      if (collection) {
+        console.log("seccess");
+        res.status(210).json({
+          message:
+            " sorry! you can't use this email ,this email is used before",
+        });
+      }
+    }
     if (data.token && data.score) {
       const turnedToken = new ObjectId(data.token);
       const client = await MongoClient.connect(
@@ -84,7 +109,9 @@ async function haandler(req, res) {
           { $set: { score: data.score } },
           { returnNewDocument: true }
         );
+
       client.close();
+      res.status(208).json({ message: "see the resualts" });
     } else if (!data.token) {
       res
         .status(207)

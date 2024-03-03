@@ -12,11 +12,13 @@ const FormItem: React.FC<{
     password: string;
     score: number;
   }) => void;
+  signError: string;
 }> = (props) => {
   const ctx = useContext(LogContext);
   const [submitting, setIsSubmitting] = useState<boolean>(false);
   const [changer, setChanger] = useState<boolean>(false);
-  const [mode, setMode] = useState<string>("sign-up");
+
+  const [showError, setShowError] = useState(false);
   const searchParams = useSearchParams();
   const params = searchParams?.get("mode");
 
@@ -27,6 +29,7 @@ const FormItem: React.FC<{
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setShowError(true);
     setChanger(!changer);
     props.onDataGetter({
       name: name.current!.value,
@@ -46,8 +49,12 @@ const FormItem: React.FC<{
   };
   const signInHandler = (e: React.FormEvent) => {
     e.preventDefault();
+    setShowError(false);
     ctx.toSignIn();
   };
+  function changeHandler() {
+    setShowError(false);
+  }
   return (
     <>
       {ctx.isLogedIn === true ? (
@@ -94,11 +101,15 @@ const FormItem: React.FC<{
                 <p className={styles.error}>please a valid email(include @)</p>
               )}
               <input
+                onChange={changeHandler}
                 ref={email}
                 id="email"
                 type="email"
                 placeholder="please enter you email address"
               />
+              {showError && props.signError !== "" && (
+                <p style={{ color: "#933131" }}>{props.signError}</p>
+              )}
             </li>
             <li className=" d-flex flex-column col-md-10 mx-auto col-lg-10 col-sm-10 ">
               {" "}

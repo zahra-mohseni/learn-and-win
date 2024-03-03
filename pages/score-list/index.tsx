@@ -22,6 +22,7 @@ export async function getStaticProps() {
     score: item.score,
     testsNumber: item.test.length,
   }));
+  client.close();
 
   return { props: { data: scoreData }, revalidate: 1 };
 }

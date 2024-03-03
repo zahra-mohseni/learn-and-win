@@ -1,6 +1,7 @@
 import LogContext from "@/context/log-context";
 import styles from "../styles/question-card.module.css";
 import { useRouter } from "next/router";
+
 import React, { FC, useContext, useState } from "react";
 import axios from "axios";
 import UserModal from "./user-modal";
@@ -14,6 +15,7 @@ const QuestionCard: React.FC<{
   }[];
 }> = (props) => {
   const mainData = props.data;
+  const router = useRouter();
   const [score, setScore] = useState(0);
   const [finished, setIsFinished] = useState(false);
   const [itemIndex, setItemIndex] = useState(0);
@@ -51,6 +53,9 @@ const QuestionCard: React.FC<{
       axios.patch("/api/pj-api", user).then((response) => {
         if (response.status === 207) {
           setShowModal(true);
+        }
+        if (response.status === 208) {
+          router.push("/score-list");
         }
       });
     }

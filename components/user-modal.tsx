@@ -48,7 +48,7 @@ const UserModal = (props: any) => {
     }
     setTimeout(() => {
       router.push("/score-list");
-    }, 1500);
+    }, 2000);
   };
   return (
     <div className={styles.back}>

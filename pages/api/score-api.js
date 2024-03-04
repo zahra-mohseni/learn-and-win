@@ -61,6 +61,7 @@ async function handler(req, res) {
         }
       } else {
         const collection = await db.collection("score-list").insertOne(data);
+        res.status(201).json({ message: "your score saved" });
       }
     }
   }

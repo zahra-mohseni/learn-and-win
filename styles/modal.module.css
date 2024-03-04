@@ -2,17 +2,17 @@
   height: 100%;
   width: 100%;
   position: fixed;
-  background-color: #7f7f7f75;
+  background-color: #7f7f7fbd;
 }
 .card {
-  background-color: #a5a5a5;
+  background-color: #c5c5c5;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 2px;
-  border: black;
+  border: solid 3px #4a4848;
   padding: 45px;
-  margin-top: 200px;
+  margin-top: 130px;
 }
 .button {
   padding: 9px;

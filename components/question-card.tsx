@@ -71,16 +71,16 @@ const QuestionCard: React.FC<{
       <form
         className={`${
           styles["card-container"]
-        } ${"row d-flex flex-column align-items-center mx-auto"}`}
+        } ${"row col-11 col-lg-8 d-flex flex-column align-items-center mx-auto"}`}
       >
-        <div className={`${styles["qustion-card"]} ${"row w-75 display-1"}`}>
+        <div className={`${styles["qustion-card"]} ${"row col-10 display-1"}`}>
           {quest.question}
         </div>
-        <div className={`${styles["button-box"]} ${"row w-75"}`}>
+        <div className={`${styles["button-box"]} ${"row col-12 "}`}>
           <div
             className={`${
               styles["button-container"]
-            } ${"row d-flex flex-row align-items-center"}`}
+            } ${"row col-12 d-flex flex-row align-items-center"}`}
           >
             {" "}
             <button
@@ -89,7 +89,7 @@ const QuestionCard: React.FC<{
                   isClicked && quest.answer === quest.options[0] ? "green" : "",
               }}
               id={quest.options[0]}
-              className={`${styles.button} ${"col-md-6"}`}
+              className={`${styles.button} ${"col-md-5 col-sm-5 col-lg-5 "}`}
               onClick={(e) => {
                 selectHandler(e, quest.options[0]);
               }}
@@ -103,7 +103,7 @@ const QuestionCard: React.FC<{
                   isClicked && quest.answer === quest.options[1] ? "green" : "",
               }}
               id={quest.options[1]}
-              className={`${styles.button} ${"col-md-6"}`}
+              className={`${styles.button} ${"col-md-5 col-sm-5 col-lg-5"}`}
               onClick={(e) => {
                 selectHandler(e, quest.options[1]);
               }}
@@ -124,7 +124,7 @@ const QuestionCard: React.FC<{
                   isClicked && quest.answer === quest.options[2] ? "green" : "",
               }}
               id={quest.options[2]}
-              className={`${styles.button} ${"col-md-6"}`}
+              className={`${styles.button} ${"col-md-5 col-sm-5 col-lg-5"}`}
               onClick={(e) => {
                 selectHandler(e, quest.options[2]);
               }}
@@ -139,7 +139,7 @@ const QuestionCard: React.FC<{
                   isClicked && quest.answer === quest.options[3] ? "green" : "",
               }}
               id={quest.options[3]}
-              className={`${styles.button} ${"col-md-6"}`}
+              className={`${styles.button} ${"col-md-5 col-sm-5 col-lg-5"}`}
               onClick={(e) => {
                 selectHandler(e, quest.options[3]);
               }}

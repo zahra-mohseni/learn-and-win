@@ -8,6 +8,7 @@ const UserModal = (props: any) => {
   const [isChanged, setIsChanged] = useState(true);
   const [isUserAvailable, setIsUserAvailable] = useState(false);
   const [serverMessage, setServerMessage] = useState("");
+  const [buttontext, setButtonText] = useState("submit");
   const textHandler = () => {
     const questUser = {
       score: Number(localStorage.getItem("score")),
@@ -34,22 +35,26 @@ const UserModal = (props: any) => {
   };
   const submitHandler = (e: any) => {
     e.preventDefault();
-    if (username.current!.value) {
-      const questUser = {
-        score: Number(localStorage.getItem("score")),
-        name: username.current!.value,
-        test: [props.title],
-      };
-      axios.put("/api/score-api", questUser).then((response: any) => {
-        if (response.status === 200) {
-          setServerMessage(response.data.message);
-        }
-      });
-    }
-    setTimeout(() => {
+    if (buttontext === "see resualts page") {
       router.push("/score-list");
-    }, 2000);
+    } else {
+      if (username.current!.value) {
+        const questUser = {
+          score: Number(localStorage.getItem("score")),
+          name: username.current!.value,
+          test: [props.title],
+        };
+        axios.put("/api/score-api", questUser).then((response: any) => {
+          if (response.status === 200) {
+            setServerMessage(response.data.message);
+          } else if (response.status === 201) {
+            setButtonText("see resualts page");
+          }
+        });
+      }
+    }
   };
+  //اصلاح رفتن به صفحه امتیاز ها
   return (
     <div className={styles.back}>
       <form
@@ -66,13 +71,15 @@ const UserModal = (props: any) => {
           ref={username}
           onChange={textHandler}
         />
-        {username.current?.value && <p>{serverMessage}</p>}
+        {username.current?.value && (
+          <p style={{ textAlign: "center" }}>{serverMessage}</p>
+        )}
         <button
           className="col-sm-4 m-1"
           type="submit"
           disabled={isUserAvailable}
         >
-          submit
+          {buttontext}
         </button>
         <button className="col-sm-4" onClick={clickHandler}>
           cancle

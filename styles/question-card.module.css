@@ -5,15 +5,15 @@
   font-size: 21px;
   margin: 17px;
   display: flex;
-  height: 100px;
+  height: auto;
   border: solid 4px #c9b607;
   border-radius: 2%;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  padding: 10px;
 }
 .card-container {
-  width: 75vw;
   border: solid 1px;
   margin-top: 80px;
   margin-bottom: 50px;
@@ -24,7 +24,7 @@
 .button-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
 }
 .button-box {
   display: flex;
@@ -34,8 +34,8 @@
 }
 .button {
   height: 57px;
-  width: 314px;
-  margin: 14px;
+
+  margin: 14px 0px 14px 0px;
   border: solid 1px;
   border-radius: 2%;
   font-size: 17px;

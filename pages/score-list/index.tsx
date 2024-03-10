@@ -11,7 +11,7 @@ const ScoreList = (props: {
   sortedData.reverse();
   return <Score data={sortedData} />;
 };
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const client = await MongoClient.connect(
     "mongodb+srv://mohseniz25:PLsUGaAZOK6qkYsM@cluster0.sbiuujd.mongodb.net/quiz?retryWrites=true&w=majority"
   );
@@ -24,6 +24,6 @@ export async function getStaticProps() {
   }));
   client.close();
 
-  return { props: { data: scoreData }, revalidate: 1 };
+  return { props: { data: scoreData } };
 }
 export default ScoreList;

@@ -11,7 +11,7 @@ const Information: React.FC<{
     router.push(`/data/${props.itemData.title}`);
   };
   return (
-    <div className="row col-12 d-flex flex-column align-items-center">
+    <div className="row col-12 d-flex flex-column align-items-center mx-auto">
       <div
         className={`${"col-lg-7 col-md-10 col-sm-10 col-11 mx-auto d-flex flex-column align-items-center"} ${
           styles.back

@@ -9,20 +9,18 @@ const HomePage = (props: {
   const dataArray = props.data;
   const [spiner, setSpiner] = useState(true);
 
-  if (props) {
-    return (
-      <>
-        <Head>
-          <title>HomePage</title>
-          <meta name="description" content="Home page" />
-        </Head>
+  return (
+    <>
+      <Head>
+        <title>HomePage</title>
+        <meta name="description" content="Home page" />
+      </Head>
 
-        {dataArray.map((item) => (
-          <Information itemData={item} key={item.image} />
-        ))}
-      </>
-    );
-  }
+      {dataArray.map((item) => (
+        <Information itemData={item} key={item.image} />
+      ))}
+    </>
+  );
 };
 
 export async function getStaticProps(context: any) {

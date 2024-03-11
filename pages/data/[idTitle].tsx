@@ -33,7 +33,7 @@ const InformationPage = (props: any) => {
         <title>{props.data.title}</title>
         <meta name="description" content="learn now" />
       </Head>
-      <div className="row d-flex flex-column align-items-center ">
+      <div className="row col-12 d-flex flex-column align-items-center ">
         {" "}
         <Div className="col-lg-8 col-md-10 col-sm-10 col-11">
           <img

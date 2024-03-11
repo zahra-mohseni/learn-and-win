@@ -61,7 +61,7 @@ const SignInForm: React.FC<{
           onSubmit={submitHandler}
         >
           <ul
-            className={`${"row d-flex flex-column col-lg-5 col-md-6 col-sm-8 col-10"} ${
+            className={`${"row d-flex flex-column align-items-center col-lg-5 col-md-6 col-sm-8 col-10"} ${
               styles["un-li"]
             }`}
           >
